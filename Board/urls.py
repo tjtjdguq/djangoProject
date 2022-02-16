@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns=[
     path('',views.getSongList,name='Songs'),
-    path('song_detail/<int:pk>/', views.getSongDetail, name='song_detail')
+    path('song_detail/<int:rank>/', views.getSongDetail, name='song_detail')
 ]

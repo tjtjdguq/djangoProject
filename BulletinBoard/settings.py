@@ -122,4 +122,4 @@ import os
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, STATIC_URL)
 MEDIA_ROOT=os.path.join(BASE_DIR,'/media')
-MEDIA_URL='https://charts-static.billboard.com/img/2021/12/carolina-gaitan-000-we-dont-talk-about-bruno-d0v-344x344.jpg/'
+MEDIA_URL='/media/'

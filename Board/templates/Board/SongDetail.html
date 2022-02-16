@@ -1,5 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'Board/base.html' %}
 
 {% block base %}
-<h3>Song Title : {{ song }}</h3>
+    <h3>Song Title : {{ songInfo.title }}</h3>
+    <h3>Song Artist : {{ songInfo.artist }}</h3>
+    <h3>Song Rank : {{ songInfo.rank }}</h3>
+    <p>Song Lyric : {{ songInfo.lyric }}</p>
 {% endblock %}
