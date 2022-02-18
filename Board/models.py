@@ -8,3 +8,8 @@ class Songs(models.Model):
     image=models.ImageField(blank=True)
     def __str__(self):
         return self.title+str(Songs.pk)
+
+class LyricInsert(models.Model):
+    song=models.ForeignKey('Board.Songs',on_delete=models.CASCADE,related_name='inserted_lyric')
+    author=models.ForeignKey('auth.User',on_delete=models.CASCADE)
+    lyric=models.TextField()
