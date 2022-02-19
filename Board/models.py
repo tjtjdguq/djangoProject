@@ -12,4 +12,4 @@ class Songs(models.Model):
 class LyricInsert(models.Model):
     song=models.ForeignKey('Board.Songs',on_delete=models.CASCADE,related_name='inserted_lyric')
     author=models.ForeignKey('auth.User',on_delete=models.CASCADE)
-    lyric=models.TextField()
+    lyric_candidate=models.TextField()

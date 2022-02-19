@@ -2,7 +2,8 @@
 {% block base %}
     <table>
         <h1>Please update the song lyric. Our administrator will approve soon.</h1>
-        <form method="POST" class="post-form">{% csrf_token %}
+        <form method="POST" class="post-form">
+            {% csrf_token %}
             <table class="table table-bordered table-hover">
                 {{ form.as_table }}
             </table>

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Songs
+from .models import Songs,LyricInsert
 from .forms import LyricInsertForm
 from .web_scraping import get_billboard100
 from django.contrib.auth.decorators import login_required
@@ -19,12 +19,15 @@ def getSongDetail(request,rank):
 def insertLyric(request,rank):
     song=Songs.objects.filter(rank=rank)
     if request.method == "POST":
-        form = LyricInsertForm(request.POST)
+        print(request.POST)
+        inst=LyricInsert()
+        inst.song=song[0]
+        inst.author=request.user
+        form = LyricInsertForm(request.POST,instance=inst)
         if form.is_valid():
             lyric = form.save(commit=False)
-            lyric.song=song
             lyric.save()
-            return redirect('song_detail',song.rank)
+            return redirect('song_detail',song[0].rank)
     else:
         form = LyricInsertForm()
-        return render(request, 'Board/LyricInsert.html')
+    return render(request, 'Board/LyricInsert.html',{'form':form})

@@ -1,5 +1,6 @@
 {% extends "Board/base.html" %}
 {% block base %}
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
     {% for song in billboard %}
         <div class="col d-flex align-items-start" style="margin-top: 40px;margin-bottom: 40px">
             <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
@@ -20,4 +21,5 @@
             </div>
         </div>
     {% endfor %}
+    </div>
 {% endblock %}
