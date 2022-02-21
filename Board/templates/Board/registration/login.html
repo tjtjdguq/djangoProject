@@ -1,5 +1,5 @@
 {% extends "Board/base.html" %}
-{% block content %}
+{% block base %}
     {% if form.errors %}
         <p>이름과 비밀번호가 일치하지 않습니다. 다시 시도해주세요.</p>
     {% endif %}
@@ -15,6 +15,7 @@
                 <td>{{ form.password }}</td>
             </tr>
         </table>
+        <h3>아직 계정이 없으신가요?<a href="{% url 'signup' %}"> 회원가입</a></h3>
         <input type="submit" value="login" class="btn btn-primary btn-lg"/>
         <input type="hidden" name="next" value="{{ next }}"/>
     </form>
