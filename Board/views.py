@@ -6,16 +6,23 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 # Create your views here.
-def getSongList(request):
+def getHome(request):
+    return render(request,"Board/index.html")
+
+def refreshBillBoard(request):
     Songs.objects.all().delete()
     for song in get_billboard100():
         Songs.objects.create(title=song['title'],artist=song['artist'],rank=song['rank'])
     songs=Songs.objects.all()
     return render(request,"Board/ChartList.html",{'billboard':songs})
 
+def getSongList(request):
+    songs=Songs.objects.all()
+    return render(request,"Board/ChartList.html",{'billboard':songs})
+
 def getSongDetail(request,rank):
     song=Songs.objects.get(rank=rank)
-    lyric_candidate=LyricInsert.objects.filter(song==song)
+    lyric_candidate=LyricInsert.objects.filter(song=song)
     return render(request,"Board/SongDetail.html",{'songInfo':song,'lyrics':lyric_candidate})
 
 @login_required

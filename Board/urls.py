@@ -3,7 +3,9 @@ from . import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns=[
-    path('',views.getSongList,name='Songs'),
+    path('',views.getHome,name='Home'),
+    path('refresh',views.refreshBillBoard,name='refresh'),
+    path('Songs',views.getSongList,name='Songs'),
     path('song_detail/<int:rank>/', views.getSongDetail, name='song_detail'),
     path('accounts/login/', auth_views.LoginView.as_view(template_name="Board/registration/login.html"), name="login"),
     path('accounts/logout',auth_views.LogoutView.as_view(),name='logout'),

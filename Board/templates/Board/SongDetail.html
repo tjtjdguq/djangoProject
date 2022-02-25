@@ -12,6 +12,9 @@
     <h3>Song Rank : {{ songInfo.rank }}</h3>
     <p>Song Lyric : {{ songInfo.lyric }}</p>
     {% if user.is_authenticated and user.is_staff %}
-
+        {% for lyric in lyrics %}
+            <h3>Lyric{{ forloop.counter }}</h3>
+            <p>{{ lyric.lyric_candidate }}</p>
+        {% endfor %}
     {% endif %}
 {% endblock %}
