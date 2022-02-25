@@ -1,12 +1,39 @@
 {% extends "Board/base.html" %}
 {% block base %}
-    {% for song in billboard %}
-            <div>
-                <h2>{{ song.title }}</h2>
-                <p>{{ song.artist }}</p>
-                <a href="{% url 'song_detail' rank=song.rank %}" class="btn btn-primary">
-                    detail info
-                </a>
-            </div>
-    {% endfor %}
+{% for song in billboard %}
+<div style="border:5px solid red;margin:5px">
+    <h2>{{ song.title }}</h2>
+    <p>{{ song.artist }}</p>
+    <a href="{% url 'song_detail' rank=song.rank %}" class="btn btn-primary">
+        detail info
+    </a>
+</div>
+{% endfor %}
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        {% if billboard.has_previous %}
+        <a class="page-link" href="?page={{billboard.previous_page_number}}" tabindex="-1">Previous</a>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+        {% endif %}
+        {% for i in billboard.paginator.page_range %}
+            {% if i == billboard.number %}
+            <li class="page-item active">
+                <a class="page-link" href="?page={{i}}">{{i}} <span class="sr-only">(current)</span></a>
+            </li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if billboard.has_next %}
+        <a class="page-link" href="?page={{billboard.next_page_number}}" tabindex="-1">Next</a>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Next</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
 {% endblock %}
